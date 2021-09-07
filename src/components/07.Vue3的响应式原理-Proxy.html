@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>
+    niaohaoa
+    <!-- vue3响应式的实现原理是: 通过 Proxy 实现对属性的 读取, 修改, 删除, 增加 进行监测 -->
+    <!-- 通过 Reflect 熟悉爱你对源数据的修改 -->
+  </div>
+  <script>
+    // 1. 了解Vue3的响应式原理, 首先就是要了解 window对象下的全局构造函数-- Proxy
+    const person = {
+      name: "shuosuo",
+      age: 18
+    };
+
+    // 构造函数 Proxy() 的使用
+    // 当Proxy的第二个参数为空对象时, 此时p和person也能够进行关联, 通过p的增删查改都可以映射到person中
+    // 但是为了实现页面的响应式修改, 我们需要对象增删查改动作进行监测
+    // const p = new Proxy(person, {
+    // })
+
+    // 不同于vue2的响应式, 我们不需要对源对象的每个属性都单独进行手动监听
+    const p = new Proxy(person, {
+      // get()内部有两个参数, 目标对象target和目标属性propName
+      get(target, propName) {
+        console.log(`有人查询了${propName}属性`);
+        // return target[propName]
+        // 在Vue3 中修改源数据对象的属性是通过 window的全局对象 reflect 进行修改的, 相比普通的修改方式来说可能更加健壮
+        return Reflect.get(target, propName)
+      },
+      // set()内部有三个参数, 多了一个属性值
+      // 当对象添加属性时, 会被set()方法捕获
+      set(target, propName, value) {
+        console.log(`有人修改了${propName}属性, 属性值为${value}`);
+        // 当使用set()方法后, 需要手动将 源数据对应属性进行修改, 若没有调用方法则不用; 同理 get(), deleteProperty
+        // target[propName] = value
+        Reflect.set(target, propName, value)
+      },
+      // 删除操作, deleteProperty(), 两个参数
+      deleteProperty(target, propName) {
+        console.log(`有人删除了${propName}属性`);
+        // return delete target[propName]
+        return Reflect.deleteProperty(target, propName)
+      }
+    })
+  </script>
+</body>
+
+</html>
