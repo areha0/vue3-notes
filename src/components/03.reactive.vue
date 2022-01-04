@@ -36,7 +36,7 @@ export default {
       shuosuo.age = 12;
       shuosuo.height = 180;
       shuosuo.weight = 80;
-      // console.log(shuosuo);
+      console.log(shuosuo);
 
       // 注意: 我们在vue2中讨论过, 在修改数组时, 如果是使用arr[index] = value 的方式时, 并不能够做到数组数据的响应式
       // 这是由于Object.defineProperty的原因, 而在vue3中修改数组数据时可以直接按照索引值进行修改

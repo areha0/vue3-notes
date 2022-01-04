@@ -54,13 +54,13 @@ export default {
     let message = ref("nihaoshuia");
 
     // 1. 下面对ref()定义的单个数据进行监测, 也可以设置immediate以及deep配置
-    watch(
-      count,
-      (newValue, oldValue) => {
-        console.log("count发生了改变", newValue, oldValue);
-      }
-      // { immediate: true, deep: true }
-    );
+    // watch(
+    //   count,
+    //   (newValue, oldValue) => {
+    //     console.log("count发生了改变", newValue, oldValue);
+    //   }
+    //   // { immediate: true, deep: true }
+    // );
     // 如果要监测message的改变, 可以再次调用watch()函数, 但是这里就不这样了
 
     // 2. 对ref()定义的多个变量进行监测, 多个变量使用数组的形式放在一块, 监测到的新旧数据也是按照数组的形式呈现,
@@ -83,7 +83,7 @@ export default {
         },
       },
     });
-    // 3. 对reactive定义的变量记性监测
+    // 3. 对reactive定义的变量进行监测
     // 缺陷: 当对象内部的属性值发生改变时, 能够监测到reactive对象的改变, 但是无法显示正确的oldValue, 如果需要oldValue, 请将对应的属性值单独由ref进行定义
     // 监测时, reactive内部默认是进行深层监测 即 deep配置为true, 但是修改deep:false并不能够取消深层监测
     // watch(person, (newValue, oldValue) => {

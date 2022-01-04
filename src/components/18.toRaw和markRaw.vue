@@ -49,6 +49,10 @@ export default {
         type: "bnze",
         price: 45,
       });
+      // let car = {
+      //   type: "BMW",
+      //   price: 18,
+      // };
       shuosuo.car = car;
     }
 

@@ -31,8 +31,8 @@ export default {
     // return () => {
     //   return h("p", "nihaoa");
     // };
-    //    对渲染函数进行化简
-    // return () => h("p", "nihaoa");
+    //    对渲染函数进行化简, 就是将nihaoa作为二级标题
+    // return () => h("h2", "nihaoa");
   },
 
   // 二. vue2的配置 data, methods; 在vue3项目中还可以继续使用vue2的配置: data, methods

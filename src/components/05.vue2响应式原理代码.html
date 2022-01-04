@@ -2,50 +2,50 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="../../../vue.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../../vue.js"></script>
 </head>
 
 <body>
-    <div>
-        nihao
-    </div>
-    <script>
-        // vue2的响应式原理 -- 代码展示
-        const person = {
-            name: "shuosuo",
-            age: 18
-        };
-        const p = {};
-        Object.defineProperty(p, "age", {
-            configurable: true,
-            get() {
-                console.log("监测到了有人正在查询age属性");
-                return person.age
-            },
-            set(value) {
-                console.log("监测到有人修改了age属性, 需要去页面中进行更新");
-                // 我们可以检测到有人修改属性值, 可以通过代码实现界面内容的响应式
-                // 然后就是修改源数据的属性值
-                person.age = value
-            }
-        });
-        Object.defineProperty(p, "name", {
-            configurable: true, // 默认p不能够删除属性, 但是设置configurable时就可以删除了
-            get() {
-                console.log("监测到了有人正在查询name属性");
-                return person.name
-            },
-            set(value) {
-                console.log("监测到有人修改了name属性, 需要去页面中进行更新");
-                // 我们可以检测到有人修改属性值, 可以通过代码实现界面内容的响应式
-                // 然后就是修改源数据的属性值
-                person.name = value
-            }
-        })
+  <div>
+    nihao
+  </div>
+  <script>
+    // vue2的响应式原理 -- 代码展示
+    const person = {
+      name: "shuosuo",
+      age: 18
+    };
+    const p = {};
+    Object.defineProperty(p, "age", {
+      configurable: true,
+      get() {
+        console.log("监测到了有人正在查询age属性");
+        return person.age
+      },
+      set(value) {
+        console.log("监测到有人修改了age属性, 需要去页面中进行更新");
+        // 我们可以检测到有人修改属性值, 可以通过代码实现界面内容的响应式
+        // 然后就是修改源数据的属性值
+        person.age = value
+      }
+    });
+    Object.defineProperty(p, "name", {
+      configurable: true, // 默认p不能够删除属性, 但是设置configurable时就可以删除了
+      get() {
+        console.log("监测到了有人正在查询name属性");
+        return person.name
+      },
+      set(value) {
+        console.log("监测到有人修改了name属性, 需要去页面中进行更新");
+        // 我们可以检测到有人修改属性值, 可以通过代码实现界面内容的响应式
+        // 然后就是修改源数据的属性值
+        person.name = value
+      }
+    })
         // 同理, 对person中的其他属性也绑定到p对象中, 实现对所有属性的监听
         // 所以对象的vue2的响应式原理就是: 通过Object.defineProperty对属性的读取和修改进行监测(数据劫持)
 
@@ -54,7 +54,7 @@
         // 同理, 当删除对象中的某一属性时, 也检测不到, 无法调用set()函数
 
         // ** 所以就产生了vue2中的一些缺点, 不能够使用正常方法进行属性的添加和删除
-    </script>
+  </script>
 </body>
 
 </html>

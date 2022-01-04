@@ -34,7 +34,8 @@ export default {
     function changeInfo() {
       name.value = "areha";
       age.value = 21;
-      // console.log(name);
+      // 此时的name是一个refImpl对象
+      console.log(name);
       // 修改对象内部的属性值, 并且实现响应式, 和普通数据类型: 字符串, 数字, 布尔值 又有一些不同
 
       // 此时ref对象的value值是一个 proxy

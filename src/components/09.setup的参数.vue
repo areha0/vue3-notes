@@ -10,10 +10,10 @@
       <!-- <span name="nihaoa">11</span> -->
       <!-- 2.2 v-slot 只能够用于 template标签中 -->
       <template v-slot:nihao>
-        <span></span>
+        <span>123</span>
       </template>
       <template v-slot:nihaom>
-        <span></span>
+        <span>456</span>
       </template>
     </Demo>
   </div>
